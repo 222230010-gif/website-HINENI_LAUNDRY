@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Inventori | Hineni Laundry</title>
+
+    <link rel="stylesheet" href="../css/components/sidebar.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/stok.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar" id="sidebar-container"></aside>
+
+    <main class="main-content">
+
+        <section class="page-header">
+            <div>
+                <h1>Manajemen Inventori</h1>
+                <p>
+                    Kelola stok bahan laundry yang digunakan dalam proses operasional.
+                </p>
+            </div>
+
+            <div class="page-header-actions">
+                <button class="btn btn-primary" id="btnOpenModal">
+                    <i class="fas fa-plus"></i>
+                    Tambah Bahan
+                </button>
+            </div>
+        </section>
+
+        <section class="summary-grid">
+
+            <article class="summary-card">
+                <div class="summary-icon blue">
+                    <i class="fas fa-box"></i>
+                </div>
+
+                <div class="summary-info">
+                    <span>Total Bahan</span>
+                    <h3 id="totalBahan">0</h3>
+                </div>
+            </article>
+
+            <article class="summary-card">
+                <div class="summary-icon green">
+                    <i class="fas fa-warehouse"></i>
+                </div>
+
+                <div class="summary-info">
+                    <span>Total Stok</span>
+                    <h3 id="totalStok">0</h3>
+                </div>
+            </article>
+
+            <article class="summary-card">
+                <div class="summary-icon red">
+                    <i class="fas fa-triangle-exclamation"></i>
+                </div>
+
+                <div class="summary-info">
+                    <span>Stok Menipis</span>
+                    <h3 id="stokMenipis">0</h3>
+                </div>
+            </article>
+
+        </section>
+
+        <section class="content-card">
+
+            <div class="card-header">
+                <div>
+                    <h2>Daftar Inventori</h2>
+                    <p>Data seluruh bahan operasional laundry.</p>
+                </div>
+
+                <div class="toolbar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+
+                        <input
+                            type="text"
+                            id="searchInventori"
+                            placeholder="Cari bahan..."
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="data-table">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama Bahan</th>
+                            <th>Satuan</th>
+                            <th>Stok</th>
+                            <th>Min Stok</th>
+                            <th>Harga Beli</th>
+                            <th>Status</th>
+                            <th class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="inventoriTableBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal-overlay" id="inventoriModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+                <h3 id="modalTitle">Tambah Inventori</h3>
+                <p>Isi data bahan inventori.</p>
+            </div>
+
+            <button
+                type="button"
+                class="icon-btn ghost"
+                id="btnCloseModal"
+            >
+                <i class="fas fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <form id="inventoriForm" class="modal-form">
+
+            <div class="form-grid two-col">
+
+                <div class="form-group">
+                    <label>ID Bahan</label>
+                    <input
+                        type="text"
+                        id="idBahan"
+                        class="input-control"
+                        readonly
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Nama Bahan</label>
+                    <input
+                        type="text"
+                        id="namaBahan"
+                        class="input-control"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Satuan</label>
+
+                    <select
+                        id="satuan"
+                        class="input-control"
+                    >
+                        <option>Kg</option>
+                        <option>Liter</option>
+                        <option>Pack</option>
+                        <option>Pcs</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Stok</label>
+
+                    <input
+                        type="number"
+                        id="stok"
+                        class="input-control"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Stok Minimum</label>
+
+                    <input
+                        type="number"
+                        id="stokMinimum"
+                        class="input-control"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Harga Beli</label>
+
+                    <input
+                        type="number"
+                        id="hargaBeli"
+                        class="input-control"
+                        required
+                    >
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-light"
+                    id="btnCancelModal"
+                >
+                    Batal
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    <i class="fas fa-save"></i>
+                    Simpan
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="../js/app.js"></script>
+<script src="../js/stok.js"></script>
+
+</body>
+</html>

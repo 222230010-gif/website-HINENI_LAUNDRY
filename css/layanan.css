@@ -1,0 +1,38 @@
+@import url("./user.css");
+
+/* =========================================================
+   LAYANAN PAGE CUSTOM
+========================================================= */
+
+.summary-grid{
+    grid-template-columns: repeat(2, minmax(0,1fr));
+}
+
+.data-table{
+    width: 100%;
+}
+
+.harga-text{
+    font-weight: 600;
+    color: #16a34a;
+}
+
+.satuan-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:60px;
+    height:32px;
+    padding:0 12px;
+    border-radius:999px;
+    background:#eff6ff;
+    color:#1d4ed8;
+    font-size:12px;
+    font-weight:600;
+}
+
+@media(max-width:860px){
+    .summary-grid{
+        grid-template-columns:1fr;
+    }
+}

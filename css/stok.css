@@ -1,0 +1,47 @@
+@import url("./user.css");
+
+/* ==========================================
+   INVENTORI
+========================================== */
+
+.summary-grid{
+    grid-template-columns: repeat(3,minmax(0,1fr));
+}
+
+.data-table{
+    width:100%;
+}
+
+.stok-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:80px;
+    height:32px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.stok-aman{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.stok-tipis{
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+.harga-text{
+    color:#16a34a;
+    font-weight:600;
+}
+
+@media(max-width:860px){
+
+    .summary-grid{
+        grid-template-columns:1fr;
+    }
+
+}

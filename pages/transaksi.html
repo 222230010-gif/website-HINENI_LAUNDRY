@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaksi Laundry | Hineni Laundry</title>
+
+    <link rel="stylesheet" href="../css/components/sidebar.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/transaksi.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar" id="sidebar-container"></aside>
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <section class="page-header">
+
+            <div>
+                <h1>Transaksi Laundry</h1>
+                <p>
+                    Kelola seluruh transaksi laundry pelanggan,
+                    status pengerjaan, pembayaran dan cetak nota.
+                </p>
+            </div>
+
+            <div class="page-header-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="btnOpenModal"
+                >
+                    <i class="fas fa-plus"></i>
+                    Transaksi Baru
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- SUMMARY -->
+
+        <section class="summary-grid">
+
+            <article class="summary-card">
+                <div class="summary-icon blue">
+                    <i class="fas fa-receipt"></i>
+                </div>
+
+                <div class="summary-info">
+                    <span>Total Transaksi</span>
+                    <h3 id="totalTransaksi">0</h3>
+                </div>
+            </article>
+
+            <article class="summary-card">
+                <div class="summary-icon orange">
+                    <i class="fas fa-spinner"></i>
+                </div>
+
+                <div class="summary-info">
+                    <span>Diproses</span>
+                    <h3 id="totalDiproses">0</h3>
+                </div>
+            </article>
+
+            <article class="summary-card">
+                <div class="summary-icon green">
+                    <i class="fas fa-check"></i>
+                </div>
+
+                <div class="summary-info">
+                    <span>Selesai</span>
+                    <h3 id="totalSelesai">0</h3>
+                </div>
+            </article>
+
+            <article class="summary-card">
+                <div class="summary-icon purple">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+
+                <div class="summary-info">
+                    <span>Lunas</span>
+                    <h3 id="totalLunas">0</h3>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- FILTER -->
+
+        <section class="content-card filter-card">
+
+            <div class="filter-grid">
+
+                <div class="form-group">
+                    <label>Tanggal Awal</label>
+                    <input
+                        type="date"
+                        id="filterStartDate"
+                        class="input-control"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Tanggal Akhir</label>
+                    <input
+                        type="date"
+                        id="filterEndDate"
+                        class="input-control"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <select
+                        id="filterStatus"
+                        class="input-control"
+                    >
+                        <option value="">Semua Status</option>
+                        <option value="Diproses">Diproses</option>
+                        <option value="Selesai">Selesai</option>
+                        <option value="Lunas">Lunas</option>
+                    </select>
+                </div>
+
+                <div class="form-group filter-button">
+                    <button
+                        class="btn btn-light"
+                        id="btnResetFilter"
+                    >
+                        Reset Filter
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- TABLE -->
+
+        <section class="content-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h2>Daftar Transaksi</h2>
+                    <p>
+                        Seluruh transaksi laundry yang masuk.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="data-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Tanggal</th>
+                            <th>Pelanggan</th>
+                            <th>Layanan</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th class="text-center">
+                                Aksi
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="transaksiTableBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- MODAL TRANSAKSI -->
+
+<div
+    class="modal-overlay"
+    id="transaksiModal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+                <h3 id="modalTitle">
+                    Transaksi Baru
+                </h3>
+
+                <p>
+                    Input transaksi laundry pelanggan.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="icon-btn ghost"
+                id="btnCloseModal"
+            >
+                <i class="fas fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <form
+            id="transaksiForm"
+            class="modal-form"
+        >
+
+            <div class="form-grid two-col">
+
+                <div class="form-group">
+
+                    <label>ID Transaksi</label>
+
+                    <input
+                        type="text"
+                        id="idTransaksi"
+                        class="input-control"
+                        readonly
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Tanggal</label>
+
+                    <input
+                        type="date"
+                        id="tanggal"
+                        class="input-control"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Pelanggan</label>
+
+                    <select
+                        id="pelanggan"
+                        class="input-control"
+                        required
+                    >
+                        <option value="">
+                            Pilih Pelanggan
+                        </option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Layanan</label>
+
+                    <select
+                        id="layanan"
+                        class="input-control"
+                        required
+                    >
+                        <option value="">
+                            Pilih Layanan
+                        </option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Jumlah / Berat</label>
+
+                    <input
+                        type="number"
+                        id="qty"
+                        min="1"
+                        class="input-control"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Harga</label>
+
+                    <input
+                        type="text"
+                        id="harga"
+                        class="input-control"
+                        readonly
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Total Transaksi</label>
+
+                <input
+                    type="text"
+                    id="total"
+                    class="input-control total-box"
+                    readonly
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select
+                    id="status"
+                    class="input-control"
+                >
+                    <option value="Diproses">
+                        Diproses
+                    </option>
+
+                    <option value="Selesai">
+                        Selesai
+                    </option>
+
+                    <option value="Lunas">
+                        Lunas
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-light"
+                    id="btnCancelModal"
+                >
+                    Batal
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    <i class="fas fa-save"></i>
+                    Simpan Transaksi
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- MODAL NOTA -->
+
+<div
+    class="modal-overlay"
+    id="notaModal"
+>
+
+    <div class="modal-box nota-box">
+
+        <div
+            id="notaContent"
+            class="nota-content"
+        >
+        </div>
+
+        <div class="modal-footer">
+
+            <button
+                class="btn btn-light"
+                onclick="closeNota()"
+            >
+                Tutup
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="printNota()"
+            >
+                <i class="fas fa-print"></i>
+                Cetak Nota
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/app.js"></script>
+<script src="../js/transaksi.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manajemen User | Hineni Laundry</title>
+
+    <link rel="stylesheet" href="../css//components/sidebar.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/user.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+</head>
+
+<body>
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar-container"></aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <section class="page-header">
+                <div>
+                    <h1>Manajemen User</h1>
+                    <p>
+                        Kelola akun pengguna aktif, role, status akun, dan hak akses menu
+                        untuk operasional Hineni Laundry.
+                    </p>
+                </div>
+
+                <div class="page-header-actions">
+                    <button type="button" class="btn btn-primary" id="btnOpenModal">
+                        <i class="fas fa-user-plus"></i>
+                        Tambah User
+                    </button>
+                </div>
+            </section>
+
+            <!-- Summary -->
+            <section class="summary-grid">
+                <article class="summary-card">
+                    <div class="summary-icon blue">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="summary-info">
+                        <span>Total User</span>
+                        <h3 id="totalUser">0</h3>
+                    </div>
+                </article>
+
+                <article class="summary-card">
+                    <div class="summary-icon green">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="summary-info">
+                        <span>User Aktif</span>
+                        <h3 id="totalAktif">0</h3>
+                    </div>
+                </article>
+
+                <article class="summary-card">
+                    <div class="summary-icon orange">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="summary-info">
+                        <span>Admin</span>
+                        <h3 id="totalAdmin">0</h3>
+                    </div>
+                </article>
+
+                <article class="summary-card">
+                    <div class="summary-icon red">
+                        <i class="fas fa-user-lock"></i>
+                    </div>
+                    <div class="summary-info">
+                        <span>Nonaktif</span>
+                        <h3 id="totalNonaktif">0</h3>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Filter + Table -->
+            <section class="content-card">
+                <div class="card-header">
+                    <div>
+                        <h2>Daftar User</h2>
+                        <p>Kelola data akun, role, status, dan permission per menu.</p>
+                    </div>
+
+                    <div class="toolbar">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input
+                                type="text"
+                                id="searchUser"
+                                placeholder="Cari nama, username, email, role..."
+                            />
+                        </div>
+
+                        <select id="filterRole" class="input-control filter-control">
+                            <option value="">Semua Role</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Kasir">Kasir</option>
+                        </select>
+
+                        <select id="filterStatus" class="input-control filter-control">
+                            <option value="">Semua Status</option>
+                            <option value="Aktif">Aktif</option>
+                            <option value="Nonaktif">Nonaktif</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID User</th>
+                                <th>Nama</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Tanggal Dibuat</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody">
+                            <tr>
+                                <td colspan="9" class="empty-state-cell">
+                                    Belum ada data user.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal Tambah / Edit User -->
+    <div class="modal-overlay" id="userModal">
+        <div class="modal-box modal-large">
+            <div class="modal-header">
+                <div>
+                    <h3 id="modalTitle">Tambah User</h3>
+                    <p>
+                        Isi data user, pilih role, status akun, dan atur hak akses menu.
+                    </p>
+                </div>
+                <button type="button" class="icon-btn ghost" id="btnCloseModal">
+                    <i class="fas fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="userForm" class="modal-form">
+                <div class="form-grid two-col">
+                    <div class="form-group">
+                        <label for="idUser">ID User</label>
+                        <input
+                            type="text"
+                            id="idUser"
+                            class="input-control"
+                            readonly
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tanggalDibuat">Tanggal Dibuat</label>
+                        <input
+                            type="text"
+                            id="tanggalDibuat"
+                            class="input-control"
+                            readonly
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input
+                            type="text"
+                            id="nama"
+                            class="input-control"
+                            placeholder="Masukkan nama user"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input
+                            type="text"
+                            id="username"
+                            class="input-control"
+                            placeholder="Masukkan username"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input
+                            type="text"
+                            id="password"
+                            class="input-control"
+                            placeholder="Masukkan password"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            class="input-control"
+                            placeholder="Masukkan email user"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select id="role" class="input-control" required>
+                            <option value="Admin">Admin</option>
+                            <option value="Kasir">Kasir</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" class="input-control" required>
+                            <option value="Aktif">Aktif</option>
+                            <option value="Nonaktif">Nonaktif</option>
+                        </select>
+                    </div>
+                </div>
+
+                <section class="permission-section">
+                    <div class="permission-header">
+                        <div>
+                            <h4>Hak Akses Menu</h4>
+                            <p>
+                                Atur menu apa saja yang dapat dibuka oleh user ini.
+                                Role <strong>Admin</strong> akan otomatis memiliki akses ke semua menu.
+                            </p>
+                        </div>
+
+                        <div class="permission-actions">
+                            <button type="button" class="btn btn-light" id="btnCheckAllPermission">
+                                Pilih Semua
+                            </button>
+                            <button type="button" class="btn btn-light" id="btnClearPermission">
+                                Hapus Semua
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="permission-grid" id="permissionGrid">
+                        <label class="permission-item">
+                            <input type="checkbox" name="permission" value="dashboard" />
+                            <span>
+                                <i class="fas fa-house"></i>
+                                Dashboard
+                            </span>
+                        </label>
+
+                        <label class="permission-item">
+                            <input type="checkbox" name="permission" value="transaksi" />
+                            <span>
+                                <i class="fas fa-clipboard-check"></i>
+                                Transaksi Laundry
+                            </span>
+                        </label>
+
+                        <label class="permission-item">
+                            <input type="checkbox" name="permission" value="pelanggan" />
+                            <span>
+                                <i class="fas fa-user"></i>
+                                Data Pelanggan
+                            </span>
+                        </label>
+
+                        <label class="permission-item">
+                            <input type="checkbox" name="permission" value="layanan" />
+                            <span>
+                                <i class="fas fa-soap"></i>
+                                Layanan
+                            </span>
+                        </label>
+
+                        <label class="permission-item">
+                            <input type="checkbox" name="permission" value="inventori" />
+                            <span>
+                                <i class="fas fa-box"></i>
+                                Manajemen Inventori
+                            </span>
+                        </label>
+
+                        <label class="permission-item">
+                            <input type="checkbox" name="permission" value="laporan" />
+                            <span>
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                Laporan Keuangan
+                            </span>
+                        </label>
+
+                        <label class="permission-item">
+                            <input type="checkbox" name="permission" value="user" />
+                            <span>
+                                <i class="fas fa-users"></i>
+                                Manajemen User
+                            </span>
+                        </label>
+                    </div>
+                </section>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" id="btnCancelModal">
+                        Batal
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Simpan User
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Permission Cepat -->
+    <div class="modal-overlay" id="permissionModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div>
+                    <h3>Atur Hak Akses User</h3>
+                    <p id="permissionUserLabel">Atur menu yang dapat diakses oleh user.</p>
+                </div>
+                <button type="button" class="icon-btn ghost" id="btnClosePermissionModal">
+                    <i class="fas fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="permissionForm" class="modal-form">
+                <input type="hidden" id="permissionUserIndex" />
+
+                <div class="permission-grid" id="permissionGridQuick">
+                    <label class="permission-item">
+                        <input type="checkbox" name="quickPermission" value="dashboard" />
+                        <span>
+                            <i class="fas fa-house"></i>
+                            Dashboard
+                        </span>
+                    </label>
+
+                    <label class="permission-item">
+                        <input type="checkbox" name="quickPermission" value="transaksi" />
+                        <span>
+                            <i class="fas fa-clipboard-check"></i>
+                            Transaksi Laundry
+                        </span>
+                    </label>
+
+                    <label class="permission-item">
+                        <input type="checkbox" name="quickPermission" value="pelanggan" />
+                        <span>
+                            <i class="fas fa-user"></i>
+                            Data Pelanggan
+                        </span>
+                    </label>
+
+                    <label class="permission-item">
+                        <input type="checkbox" name="quickPermission" value="layanan" />
+                        <span>
+                            <i class="fas fa-soap"></i>
+                            Layanan
+                        </span>
+                    </label>
+
+                    <label class="permission-item">
+                        <input type="checkbox" name="quickPermission" value="inventori" />
+                        <span>
+                            <i class="fas fa-box"></i>
+                            Manajemen Inventori
+                        </span>
+                    </label>
+
+                    <label class="permission-item">
+                        <input type="checkbox" name="quickPermission" value="laporan" />
+                        <span>
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            Laporan Keuangan
+                        </span>
+                    </label>
+
+                    <label class="permission-item">
+                        <input type="checkbox" name="quickPermission" value="user" />
+                        <span>
+                            <i class="fas fa-users"></i>
+                            Manajemen User
+                        </span>
+                    </label>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" id="btnCancelPermissionModal">
+                        Batal
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-shield-halved"></i>
+                        Simpan Hak Akses
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/user.js"></script>
+</body>
+
+</html>

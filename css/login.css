@@ -1,0 +1,475 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+}
+
+
+/* Background utama */
+
+/* ======================
+   CURSOR BUBBLES
+====================== */
+.bubble{
+    position:fixed;
+
+    width:25px;
+    height:25px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle at 30% 30%,
+        rgba(255,255,255,.95),
+        rgba(255,255,255,.4)
+    );
+
+    pointer-events:none;
+
+    z-index:9999;
+
+    animation:
+    floatUp 1.5s ease-out forwards;
+}
+
+@keyframes floatUp{
+
+    0%{
+        opacity:1;
+        transform:
+        translate(-50%,-50%)
+        scale(1);
+    }
+
+    100%{
+        opacity:0;
+        transform:
+        translate(
+            calc(-50% + 20px),
+            -120px
+        )
+        scale(2);
+    }
+
+}
+
+/* ======================
+   FLOATING BUBBLES
+====================== */
+
+.bubbles{
+    position:fixed;
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:1;
+}
+
+.bubble-float{
+    position:absolute;
+
+    bottom:-100px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle at 30% 30%,
+        rgba(255,255,255,.9),
+        rgba(255,255,255,.25)
+    );
+
+    border:
+    1px solid rgba(255,255,255,.4);
+
+    animation:
+    floatBubble linear forwards;
+}
+
+@keyframes floatBubble{
+
+    0%{
+        transform:
+        translateX(0)
+        translateY(0)
+        scale(1);
+
+        opacity:0;
+    }
+
+    10%{
+        opacity:.8;
+    }
+
+    50%{
+        transform:
+        translateX(30px)
+        translateY(-50vh)
+        scale(1.05);
+    }
+
+    100%{
+        transform:
+        translateX(-20px)
+        translateY(-120vh)
+        scale(1.2);
+
+        opacity:0;
+    }
+
+}
+
+.login-wrapper{
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        90deg,
+        #d7eefc 0%,
+        #62c5f7 50%,
+        #008de8 100%
+    );
+}
+
+.login-wrapper::before{
+    content:"";
+    position:absolute;
+
+    width:400px;
+    height:400px;
+
+    background:
+    rgba(255,255,255,.15);
+
+    border-radius:50%;
+
+    filter:blur(100px);
+
+    right:100px;
+    bottom:50px;
+}
+
+/* ======================
+   KIRI
+====================== */
+
+.left-panel{
+    width:45%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.logo-area{
+    max-width:800px;
+    min-height:500px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo-area img{
+    width:280px;
+    margin-bottom:30px;
+}
+
+.logo-area h1{
+    display:none;
+}
+
+.logo-area h2{
+    max-width:500px;
+    color:#0b7fc5;
+    font-size:clamp(36px,3vw,48px);
+    text-shadow:5px 4px 4px #ffffff;
+    font-family:"Montserrat-ExtraBold", Helvetica;
+    font-weight:700;
+    line-height:1.35;
+    letter-spacing:.5px;
+}
+
+/* ======================
+   GARIS PEMBATAS
+====================== */
+
+.divider{
+    width:3px;
+    height:70%;
+
+    position:relative;
+    z-index:2;
+
+    background:
+    rgba(
+        255,
+        255,
+        255,
+        .7
+    );
+
+    border-radius:20px;
+}
+
+/* ======================
+   KANAN
+====================== */
+
+.right-panel{
+    width:45%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+form{
+    width:380px;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+}
+
+form h2{
+    text-align:center;
+    color:white;
+    font-size:42px;
+    font-weight:500;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:white;
+    margin-bottom:35px;
+    font-size:15px;
+    letter-spacing:.5px;
+    line-height:1.6;
+}
+
+/* ======================
+   INPUT
+====================== */
+
+.input-box{
+    display:flex;
+    align-items:center;
+
+    background:white;
+
+    border:none;
+    border-radius:15px;
+
+    padding:14px 18px;
+    margin-bottom:22px;
+
+    box-shadow:
+    0 3px 8px rgba(0,0,0,.15);
+}
+
+.input-box i{
+    color:#888;
+    margin-right:10px;
+}
+
+.password-box{
+    position:relative;
+}
+
+.toggle-password{
+    cursor:pointer;
+    color:#888;
+    transition:.3s;
+    margin-left:10px;
+}
+
+.toggle-password:hover{
+    color:#3478F6;
+}
+
+.input-box input{
+    width:100%;
+    border:none;
+    outline:none;
+    font-size:15px;
+}
+
+.remember-me{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:-10px;
+    margin-bottom:20px;
+}
+
+.remember-me label{
+    color:white;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.remember-me input{
+    cursor:pointer;
+}
+
+/* ======================
+   CAPTCHA
+====================== */
+
+.captcha-label{
+    color:white;
+    display:block;
+    margin-top:10px;
+    margin-bottom:12px;
+    font-weight:500;
+}
+
+.captcha-area{
+    display:flex;
+    gap:10px;
+    margin-bottom:12px;
+}
+
+#captchaText{
+    flex:1;
+
+    background:white;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    padding:12px;
+
+    font-size:22px;
+    font-weight:bold;
+    letter-spacing:4px;
+
+    color:#0078c8;
+}
+
+.captcha-area button{
+    width:55px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:white;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 3px 8px rgba(0,0,0,.15);
+}
+
+#captchaInput{
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:15px;
+
+    outline:none;
+
+    margin-top:5px;
+
+    margin-bottom:30px;
+
+    box-shadow:
+    0 3px 8px rgba(0,0,0,.15);
+}
+
+/* ======================
+   BUTTON
+====================== */
+
+.login-btn{
+    width:180px;
+    height:55px;
+
+    display:block;
+    margin:auto;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#ff8a3d;
+
+    color:black;
+
+    font-size:22px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 6px 12px rgba(0,0,0,.2);
+}
+
+/* ======================
+   RESPONSIVE
+====================== */
+
+@media(max-width:900px){
+
+    .login-wrapper{
+        flex-direction:column;
+        padding:30px;
+    }
+
+    .divider{
+        display:none;
+    }
+
+    .left-panel{
+        width:100%;
+        margin-bottom:30px;
+    }
+
+    .right-panel{
+        width:100%;
+    }
+
+    .logo-area{
+        max-width:500px;
+    }
+
+    .logo-area img{
+        width:180px;
+    }
+
+    .logo-area h2{
+        font-size:32px;
+    }
+
+}

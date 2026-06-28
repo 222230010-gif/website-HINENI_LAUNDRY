@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pelanggan | Hineni Laundry</title>
+
+    <link rel="stylesheet" href="../css/components/sidebar.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/pelanggan.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar" id="sidebar-container"></aside>
+
+    <main class="main-content">
+
+        <section class="page-header">
+            <div>
+                <h1>Data Pelanggan</h1>
+                <p>
+                    Kelola data pelanggan laundry beserta informasi kontak dan alamat.
+                </p>
+            </div>
+
+            <div class="page-header-actions">
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="btnOpenModal"
+                >
+                    <i class="fas fa-user-plus"></i>
+                    Tambah Pelanggan
+                </button>
+            </div>
+        </section>
+
+        <section class="summary-grid">
+
+            <article class="summary-card">
+                <div class="summary-icon blue">
+                    <i class="fas fa-users"></i>
+                </div>
+
+                <div class="summary-info">
+                    <span>Total Pelanggan</span>
+                    <h3 id="totalPelanggan">0</h3>
+                </div>
+            </article>
+
+            <article class="summary-card">
+                <div class="summary-icon green">
+                    <i class="fas fa-user-check"></i>
+                </div>
+
+                <div class="summary-info">
+                    <span>Pelanggan Terdaftar</span>
+                    <h3 id="pelangganBaru">0</h3>
+                </div>
+            </article>
+
+        </section>
+
+        <section class="content-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h2>Daftar Pelanggan</h2>
+                    <p>Kelola seluruh pelanggan yang menggunakan jasa laundry.</p>
+                </div>
+
+                <div class="toolbar">
+
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+
+                        <input
+                            type="text"
+                            id="searchPelanggan"
+                            placeholder="Cari pelanggan..."
+                        >
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="data-table">
+
+                    <thead>
+                        <tr>
+                            <th>ID Pelanggan</th>
+                            <th>Nama</th>
+                            <th>WhatsApp</th>
+                            <th>Alamat</th>
+                            <th>Tanggal Dibuat</th>
+                            <th class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="pelangganTableBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal-overlay" id="pelangganModal">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+                <h3 id="modalTitle">Tambah Pelanggan</h3>
+                <p>Isi data pelanggan.</p>
+            </div>
+
+            <button
+                type="button"
+                class="icon-btn ghost"
+                id="btnCloseModal"
+            >
+                <i class="fas fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <form id="pelangganForm" class="modal-form">
+
+            <div class="form-grid two-col">
+
+                <div class="form-group">
+                    <label>ID Pelanggan</label>
+
+                    <input
+                        type="text"
+                        id="idPelanggan"
+                        class="input-control"
+                        readonly
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Tanggal Dibuat</label>
+
+                    <input
+                        type="text"
+                        id="tanggalDibuat"
+                        class="input-control"
+                        readonly
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Nama Pelanggan</label>
+
+                    <input
+                        type="text"
+                        id="nama"
+                        class="input-control"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Nomor WhatsApp</label>
+
+                    <input
+                        type="text"
+                        id="whatsapp"
+                        class="input-control"
+                        required
+                    >
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Alamat</label>
+
+                <textarea
+                    id="alamat"
+                    class="input-control textarea-control"
+                    rows="4"
+                ></textarea>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-light"
+                    id="btnCancelModal"
+                >
+                    Batal
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    <i class="fas fa-save"></i>
+                    Simpan Pelanggan
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="../js/app.js"></script>
+<script src="../js/pelanggan.js"></script>
+
+</body>
+</html>

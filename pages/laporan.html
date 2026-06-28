@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Keuangan</title>
+
+    <link rel="stylesheet" href="../css/components/sidebar.css">
+    <link rel="stylesheet" href="../css/laporan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+</head>
+<body>
+
+    <aside class="sidebar" id="sidebar-container"></aside>
+
+    <main class="main">
+
+        <div class="header">
+            <div>
+                <h1>Laporan Keuangan</h1>
+                <p>Laporan pemasukan dan pengeluaran</p>
+            </div>
+            <button class="btnTambah" onclick="openModal()">
+                + Tambah Pengeluaran
+            </button>
+        </div>
+
+        <div class="filter-box">
+            <label for="tglAwal">Dari</label>
+            <input type="date" id="tglAwal">
+
+            <label for="tglAkhir">Sampai</label>
+            <input type="date" id="tglAkhir">
+
+<button class="btnFilter" onclick="filterData()">
+    Search
+</button>
+
+<button class="btnClear" onclick="clearFilter()">
+    Clear
+</button>
+            <button class="btnExcel" onclick="exportExcel()">Export Excel</button>
+            <button class="btnPdf" onclick="window.print()">Cetak PDF</button>
+        </div>
+
+        <div class="cards">
+            <div class="card pemasukan">
+                <h4>Total Pemasukan</h4>
+                <h2 id="totalPemasukan">Rp 0</h2>
+            </div>
+            <div class="card pengeluaran">
+                <h4>Total Pengeluaran</h4>
+                <h2 id="totalPengeluaran">Rp 0</h2>
+            </div>
+            <div class="card laba">
+                <h4>Total Laba</h4>
+                <h2 id="totalLaba">Rp 0</h2>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID Transaksi</th>
+                        <th>Tanggal</th>
+                        <th>Keterangan</th>
+                        <th>Pemasukan</th>
+                        <th>Pengeluaran</th>
+                        <th>Saldo</th>
+                    </tr>
+                </thead>
+                <tbody id="tableLaporan">
+                    </tbody>
+            </table>
+        </div>
+        <div id="pagination" class="pagination"></div>
+
+    </main>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2>Tambah Pengeluaran</h2>
+            
+            <form id="formPengeluaran">
+                <input type="date" id="tanggal" required>
+                <input type="text" id="keterangan" placeholder="Keterangan" required>
+                <input type="number" id="nominal" placeholder="Nominal" required>
+
+                <div class="button-group">
+                    <button type="button" class="btnBatal" onclick="closeModal()">Batal</button>
+                    <button type="submit" class="btnSimpan">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/laporan.js"></script>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+/* ==========================================
+   RESET & BASE STYLES
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    display: flex;
+    background: #F4F6F9;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* ==========================================
+   LAYOUT STRUCTURE
+   ========================================== */
+.main {
+    margin-left: var(--sidebar-width);
+    padding: 30px;
+    width: calc(100vw - var(--sidebar-width));
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.btnTambah {
+    background: #2563EB;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* ==========================================
+   FILTER BOX
+   ========================================== */
+.filter-box {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-box input {
+    padding: 10px;
+}
+
+.btnFilter {
+    background: #2563EB;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btnExcel {
+    background: #22C55E;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btnPdf {
+    background: #EF4444;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* ==========================================
+   SUMMARY CARDS
+   ========================================== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card {
+    padding: 25px;
+    border-radius: 15px;
+    color: white;
+}
+
+.pemasukan {
+    background: #22C55E;
+}
+
+.pengeluaran {
+    background: #EF4444;
+}
+
+.laba {
+    background: #2563EB;
+}
+
+/* ==========================================
+   TABLES
+   ========================================== */
+.table-container {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+th {
+    background: #f8fafc;
+}
+
+/* ==========================================
+   MODAL COMPONENT
+   ========================================== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    width: 400px;
+    border-radius: 15px;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btnBatal {
+    background: #EF4444;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btnSimpan {
+    background: #2563EB;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* ==========================================
+   TEXT UTILITIES (TABLE COLORING)
+   ========================================== */
+.pengeluaran-text {
+    color: #DC2626;
+    font-weight: 600;
+}
+
+.pemasukan-text {
+    color: #16A34A;
+    font-weight: 600;
+}
+.pagination{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:20px;
+}
+
+.pagination button{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:8px;
+    background:#ddd;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.pagination button:hover{
+    background:#2563eb;
+    color:#fff;
+}
+
+.active-page{
+    background:#2563eb !important;
+    color:#fff;
+}
+.btnClear{
+
+    background:#ef4444;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+
+}
+
+.btnClear:hover{
+
+    background:#dc2626;
+
+}
+
+.table-container{
+    overflow-x: auto;
+}
+
+table th{
+    text-align: left;
+    font-weight: 600;
+}
+
+table td:first-child{
+    font-weight: 600;
+    color: #2563EB;
+}

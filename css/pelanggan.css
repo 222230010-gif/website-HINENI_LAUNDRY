@@ -1,0 +1,37 @@
+@import url("./user.css");
+
+/* ==========================================
+   PELANGGAN
+========================================== */
+
+.summary-grid{
+    grid-template-columns: repeat(2,minmax(0,1fr));
+}
+
+.data-table{
+    width:100%;
+}
+
+.textarea-control{
+    min-height:120px;
+    padding:14px;
+    resize:vertical;
+    font-family:"Poppins",sans-serif;
+}
+
+.icon-btn.wa{
+    color:#16a34a;
+    background:#dcfce7;
+}
+
+.icon-btn.wa:hover{
+    background:#bbf7d0;
+}
+
+@media(max-width:860px){
+
+    .summary-grid{
+        grid-template-columns:1fr;
+    }
+
+}

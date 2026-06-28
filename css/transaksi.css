@@ -1,0 +1,320 @@
+@import url("./user.css");
+
+/* ==========================================
+   TRANSAKSI PAGE
+========================================== */
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:16px;
+    margin-bottom:20px;
+}
+
+.summary-icon.purple{
+    background:linear-gradient(
+        135deg,
+        #9333ea,
+        #7e22ce
+    );
+}
+
+/* ==========================================
+   FILTER
+========================================== */
+
+.filter-card{
+    margin-bottom:20px;
+}
+
+.filter-grid{
+    display:grid;
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+    gap:16px;
+    align-items:end;
+}
+
+.filter-button{
+    display:flex;
+    align-items:flex-end;
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.data-table{
+    width:100%;
+}
+
+.qty-text{
+    font-weight:600;
+}
+
+.total-text{
+    font-weight:700;
+    color:#16a34a;
+}
+
+.transaction-id{
+    font-weight:700;
+    color:#2563eb;
+}
+
+/* ==========================================
+   STATUS BADGE
+========================================== */
+
+.status-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:100px;
+    height:34px;
+    border-radius:999px;
+    padding:0 14px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.status-diproses{
+    background:#fef3c7;
+    color:#b45309;
+}
+
+.status-selesai{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.status-lunas{
+    background:#dbeafe;
+    color:#1d4ed8;
+}
+
+/* ==========================================
+   ACTION BUTTON
+========================================== */
+
+.action-group{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.icon-btn.done{
+    color:#16a34a;
+    background:#dcfce7;
+}
+
+.icon-btn.done:hover{
+    background:#bbf7d0;
+}
+
+.icon-btn.money{
+    color:#2563eb;
+    background:#dbeafe;
+}
+
+.icon-btn.money:hover{
+    background:#bfdbfe;
+}
+
+.icon-btn.print{
+    color:#7c3aed;
+    background:#ede9fe;
+}
+
+.icon-btn.print:hover{
+    background:#ddd6fe;
+}
+
+/* ==========================================
+   FORM
+========================================== */
+
+.total-box{
+    font-size:20px;
+    font-weight:700;
+    color:#16a34a;
+    background:#f0fdf4;
+}
+
+/* ==========================================
+   MODAL NOTA
+========================================== */
+
+.nota-box{
+    max-width:800px;
+}
+
+.nota-content{
+    background:#fff;
+    border:1px dashed #d1d5db;
+    border-radius:16px;
+    padding:30px;
+    margin-bottom:20px;
+}
+
+.nota-header{
+    text-align:center;
+    margin-bottom:24px;
+}
+
+.nota-header h2{
+    margin:0;
+    font-size:26px;
+    color:#111827;
+}
+
+.nota-header p{
+    margin-top:6px;
+    color:#6b7280;
+}
+
+.nota-info{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+    margin-bottom:20px;
+}
+
+.nota-item{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.nota-item span{
+    font-size:13px;
+    color:#6b7280;
+}
+
+.nota-item strong{
+    color:#111827;
+}
+
+.nota-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+.nota-table th{
+    background:#f8fafc;
+    padding:12px;
+    border:1px solid #e5e7eb;
+    text-align:left;
+}
+
+.nota-table td{
+    padding:12px;
+    border:1px solid #e5e7eb;
+}
+
+.nota-total{
+    margin-top:20px;
+    display:flex;
+    justify-content:flex-end;
+}
+
+.nota-total-box{
+    min-width:240px;
+    padding:18px;
+    border-radius:16px;
+    background:#f0fdf4;
+    text-align:right;
+}
+
+.nota-total-box span{
+    display:block;
+    font-size:13px;
+    color:#6b7280;
+}
+
+.nota-total-box h3{
+    margin-top:6px;
+    color:#16a34a;
+    font-size:26px;
+}
+
+/* ==========================================
+   PRINT
+========================================== */
+
+@media print{
+
+    body *{
+        visibility:hidden;
+    }
+
+    #notaContent,
+    #notaContent *{
+        visibility:visible;
+    }
+
+    #notaContent{
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+    }
+
+    .modal-footer{
+        display:none;
+    }
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:1200px){
+
+    .summary-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+
+    .filter-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+    }
+}
+
+@media(max-width:860px){
+
+    .summary-grid{
+        grid-template-columns:1fr;
+    }
+
+    .filter-grid{
+        grid-template-columns:1fr;
+    }
+
+    .nota-info{
+        grid-template-columns:1fr;
+    }
+
+    .modal-box{
+        width:100%;
+    }
+}
+
+@media(max-width:560px){
+
+    .nota-content{
+        padding:20px;
+    }
+
+    .nota-header h2{
+        font-size:22px;
+    }
+
+    .nota-total-box h3{
+        font-size:22px;
+    }
+}

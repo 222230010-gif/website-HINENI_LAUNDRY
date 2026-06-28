@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Hineni Laundry Login</title>
+
+<link rel="stylesheet" href="css/login.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="bubble"></div>
+<div class="bubbles"></div>
+
+<div class="login-wrapper">
+
+    <!-- Kiri -->
+    <div class="left-panel">
+
+        <div class="logo-area">
+
+            <!-- Ganti dengan logo asli -->
+            <img src="assets/images/logo.png" alt="Hineni Laundry">
+
+            <h1>Hineni Laundry</h1>
+
+            <h2>
+                Sistem Informasi
+                <br>
+                Manajemen Laundry
+            </h2>
+
+        </div>
+
+    </div>
+
+    <!-- Garis Tengah -->
+    <div class="divider"></div>
+
+    <!-- Kanan -->
+    <div class="right-panel">
+
+        <form id="loginForm">
+
+            <h2>Selamat Datang!</h2>
+
+            <p class="subtitle">
+                SILAKAN MASUKKAN AKUN ANDA
+            </p>
+
+            <div class="input-box">
+                <i class="fas fa-user"></i>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Username"
+                    required>
+            </div>
+
+            <div class="input-box password-box">
+
+                <i class="fas fa-lock"></i>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    required>
+
+                <i
+                    class="fas fa-eye toggle-password"
+                    id="togglePassword">
+                </i>
+
+            </div>
+
+            <div class="remember-me">
+
+                <input
+                    type="checkbox"
+                    id="rememberMe">
+
+                <label for="rememberMe">
+                    Ingat Saya
+                </label>
+
+            </div>
+
+            <label class="captcha-label">
+                Verifikasi Keamanan
+            </label>
+
+            <div class="captcha-area">
+
+                <div id="captchaText">
+                    ABC123
+                </div>
+
+                <button
+                    type="button"
+                    onclick="generateCaptcha()">
+
+                    <i class="fas fa-rotate"></i>
+
+                </button>
+
+            </div>
+
+            <input
+                type="text"
+                id="captchaInput"
+                placeholder="Masukkan kode captcha">
+
+            <button
+                class="login-btn"
+                type="submit">
+
+                LOGIN
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="js/login.js"></script>
+
+</body>
+</html>
